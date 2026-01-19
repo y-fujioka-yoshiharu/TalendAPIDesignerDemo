@@ -1,0 +1,56 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "顧客",
+    "description" : "説明なし",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://r9dm8ltst7d1snc.ap.api-mocks.com",
+    "description" : "これがAPIモックサーバーURLです。呼び出すと、APIの動作がシミュレーションされます。"
+  } ],
+  "paths" : {
+    "/customer/{customerid}" : {
+      "get" : {
+        "summary" : "customer",
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "required" : [ "firstname", "id", "lastname" ],
+                  "properties" : {
+                    "id" : {
+                      "type" : "string"
+                    },
+                    "firstname" : {
+                      "type" : "string"
+                    },
+                    "lastname" : {
+                      "type" : "string"
+                    }
+                  }
+                },
+                "example" : "  {\n      \"id\": \"1\",\n      \"firstname\": \"taro\",\n      \"lastname\": \"yamada\"\n    }\n"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "customerid",
+        "in" : "path",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        },
+        "example" : 1
+      } ]
+    }
+  }
+}
