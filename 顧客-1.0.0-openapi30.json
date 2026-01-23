@@ -3,16 +3,39 @@
   "info" : {
     "title" : "顧客",
     "description" : "説明なし",
+    "contact" : { },
     "version" : "1.0.0"
   },
   "servers" : [ {
     "url" : "https://r9dm8ltst7d1snc.ap.api-mocks.com",
     "description" : "これがAPIモックサーバーURLです。呼び出すと、APIの動作がシミュレーションされます。"
+  }, {
+    "url" : "http://localhost:8090"
   } ],
   "paths" : {
     "/customer/{customerid}" : {
+      "parameters" : [ {
+        "name" : "customerid",
+        "in" : "path",
+        "required" : true,
+        "schema" : {
+          "type" : "integer"
+        },
+        "example" : 1
+      } ]
+    },
+    "/customer" : {
       "get" : {
         "summary" : "customer",
+        "parameters" : [ {
+          "name" : "customerid",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 1
+        } ],
         "responses" : {
           "200" : {
             "description" : "Status 200",
@@ -23,17 +46,20 @@
                   "required" : [ "firstname", "id", "lastname" ],
                   "properties" : {
                     "id" : {
-                      "type" : "string"
+                      "type" : "string",
+                      "example" : "1"
                     },
                     "firstname" : {
-                      "type" : "string"
+                      "type" : "string",
+                      "example" : "taro"
                     },
                     "lastname" : {
-                      "type" : "string"
+                      "type" : "string",
+                      "example" : "tanaka"
                     }
                   }
                 },
-                "example" : "  {\n      \"id\": \"1\",\n      \"firstname\": \"taro\",\n      \"lastname\": \"yamada\"\n    }\n"
+                "example" : "{\n  \"id\":1,\n  \"firstname\":\"taro\",\n  \"lastname\":\"tanaka\"\n}"
               }
             }
           },
@@ -41,16 +67,7 @@
             "description" : "Status 400"
           }
         }
-      },
-      "parameters" : [ {
-        "name" : "customerid",
-        "in" : "path",
-        "required" : true,
-        "schema" : {
-          "type" : "integer"
-        },
-        "example" : 1
-      } ]
+      }
     }
   }
 }
